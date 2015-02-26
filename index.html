@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>SherpaDesk</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,800italic,400,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link type="text/css" href="css/landing-page.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid" ng-controller="MainCtrl">
+        <div class="sd-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-7">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <img src="img/SherpaLogo.png">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 headline">
+                                <h1>Finally a Customer Support Tool that allows you to do your job.</h1>
+                                <h2>The Web's Best Help Desk, Time Tracking and Invoicing Solution! </h2>
+                                <img src="img/macbookandiphone.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <div class="form-header">
+                            <p>Start turning Customer support emails into tickets in just a few minutes.
+                            <h3>Get Started Now!</h3>
+                        </div>
+
+                        <form name="getstarted">
+                            <div ng-show="!signUp.stepOneComplete">
+                                <p class="text-center" style="margin: 20px 0;">Today you will be capturing customer support issues and logging time so that <strong>nothing slips through the cracks again.</strong></p>
+
+                                <div class="form-group" ng-class="{'has-error': getstarted.company.$error.required && getstarted.company.$dirty}">
+                                    <label class="control-label" for="company">Company Name* <span class="has-error" ng-show="getstarted.company.$error.required && getstarted.company.$dirty">Required!</span></label>
+                                    <input type="text" class="form-control input-lg" name="company" id="company" ng-model="signUp.companyName" required>
+                                </div>
+                                <div class="form-group" ng-class="{'has-error': getstarted.email.$error.email && getstarted.email.$dirty}">
+                                    <label class="control-label" for="email1">Email address*  <span class="has-error" ng-show="getstarted.email.$error.required">Required!</span></label>
+                                    <input type="email" class="form-control input-lg" id="email1" name="email" ng-model="signUp.email" required>
+                                </div>
+                                <div class="form-group" ng-class="{'has-error': checkUrl()}">
+                                    <label class="control-label" for="url">Custom Url*
+                                        <span class="has-error" ng-show="getstarted.url.$error.required">Required! </span>
+                                        <span class="has-error" ng-show="getstarted.url.badUrl">This Url is already in use</span>
+                                    </label>
+                                    <input type="text" class="form-control input-lg" id="url" name="url" ng-model="signUp.pUrl" url-validator required>
+                                    <p class="help-block">https://yourcompanyname.sherpadesk.com</p>
+                                </div>
+                                <br/>
+                                <a class="btn btn-success btn-lg btn-block sd-btn-lg" ng-click="goNextStep()">Get Started</a>
+                            </div>
+                            <div ng-show="signUp.stepOneComplete" style="margin-top: -30px;">
+                                <p>
+                                    &nbsp;<br/><br/>
+                                </p>
+                                <div class="form-group" ng-class="{'has-error': getstarted.firstName.$error.required && getstarted.firstName.$dirty}">
+                                    <label >First Name* <span class="has-error" ng-show="getstarted.firstName.$error.required && getstarted.firstName.$dirty">Required!</span></label>
+                                    <input type="text" class="form-control input-lg" name="firstName" ng-model="signUp.firstName" required>
+                                </div>
+                                <div class="form-group" ng-class="{'has-error': getstarted.lastName.$error.required && getstarted.lastName.$dirty}">
+                                    <label >Last Name* <span class="has-error" ng-show="getstarted.lastName.$error.required && getstarted.lastName.$dirty">Required!</span></label>
+                                    <input type="text" class="form-control input-lg" name="lastName" ng-model="signUp.lastName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="url">Password*</label>
+                                    <input type="password" class="form-control input-lg"  ng-model="signUp.password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="url">Confirm Password*</label>
+                                    <input type="password" class="form-control input-lg"  ng-model="signUp.password2" required>
+                                </div>
+                                <button class="btn btn-success btn-lg btn-block sd-btn-lg" ng-click="createAccount()">Let's Jump In</button>
+                            </div>
+                        </form>
+                        <p class="text-center text-muted small">
+                            <br/>
+                            100% privacy guarantee. No Credit Card Required.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="sd-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <h1>Getting Things <span>Done</span></h1>
+                        <p style="font-size: 20px;">Businesses are looking at new ways to make their organizations more streamlined and efficient.
+                         The challenge is finding a solution to work the way they work.  The simplicity of SherpaDesk, the ease of use for their clients
+                         to create support tickets and the deep integration into leading business solutions allow them to focus on doing what they love doing.
+                         Not spending time on things they don't.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="sd-section">
+            <div class="container">
+                <div class="row">
+                    <ul class="list-inline list-unstyled">
+                        <li class="testimonial">
+                            <img src="http://sherpadesk.com/wp-content/themes/splash/img/RobbieMedina.png">
+                            <p>"SherpaDesk is simple, scalable and affordable. Improves communications between you and the customers you support"</p>
+                            <p><strong>Robbie Medina | IT Intelligence Consulting</strong></p>
+                        </li>
+                        <li class="testimonial">
+                            <img src="http://sherpadesk.com/wp-content/themes/splash/img/Scott.png">
+                            <p>"Besides all the great features its prompt customer support makes it great to work with SherpaDesk"</p>
+                            <p><strong>Thomas | Jamersan Web Consulting</strong></p>
+                        </li>
+                        <li class="testimonial">
+                            <img src="http://sherpadesk.com/wp-content/themes/splash/img/Patrick.png">
+                            <p>"You guys provide great support...honestly, I think you should charge a bit more"</p>
+                            <p><strong>Patrick Christenson | Christenson Communities</strong></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="sd-footer">
+        <ul class="list-inline list-unstyled logo-blocks">
+            <li><img src="http://sherpadesk.com/wp-content/themes/splash/img/logo1.png"></li>
+            <li><img src="http://sherpadesk.com/wp-content/themes/splash/img/logo2.png"></li>
+            <li><img src="http://sherpadesk.com/wp-content/themes/splash/img/logo3.png"></li>
+            <li><img src="http://sherpadesk.com/wp-content/themes/splash/img/logo4.png"></li>
+            <li><img src="http://sherpadesk.com/wp-content/themes/splash/img/logo5.png"></li>
+        </ul>
+        </div>
+    </div>
+
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="js/signup.js"></script>
+
+</body>
+</html>
